@@ -1,0 +1,16 @@
+
+table tr td
+{
+   color:#412564;
+   font-family:Arial Black,Gadget,sans-serif;
+   font-size:40px;
+   font-weight:700;
+   text-shadow:4px 4px grey
+}
+
+input
+{
+   font-family:Comic Sans MS,cursive,sans-serif;
+   font-weight:700;
+   padding:2px 6px 5px  6px
+}
