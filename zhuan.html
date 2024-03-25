@@ -16,8 +16,8 @@
 }
 @keyframes movep
 {
-   0%{background-position:0px 0px;}
-  100%{background-position:-245px 0px;}
+   0%{background-position:0px 0px;opacity:0.2;transform:rotate(0deg)}
+  100%{background-position:-245px 0px;opacity:1.0;transform:rotate(359deg)}
 }
 #div2{
 animation:movep 5s 1;
@@ -25,7 +25,7 @@ background-image:url(image/8.jpg);
 width:200px;height:200px;
 background-repeat:no-repeat;
 background-position:-200px 0px;
-opacity:1;
+transform-origin:356px 200px}
 
 }
 #div1{animation:slide 15s 1;
@@ -35,9 +35,5 @@ background-repeat:no-repeat-x;
 </style>
 </head>
 <body>
-<div id=div1></div>
+<div id=div2></div>
 </body>
-
-
-
-
