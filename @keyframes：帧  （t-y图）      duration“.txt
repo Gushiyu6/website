@@ -1,0 +1,4 @@
+@keyframes：帧  （t-y图）      duration“周期”    如何使用：#div{animation：name1
+                                                                                            2s（写秒数   infinite}
+slide幻灯片
+transform-origin：变换的原点
