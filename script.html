@@ -1,0 +1,52 @@
+<script>
+    //array = RAM,eandom access memory,x[i]
+    let x = [];    //resizable容器,
+    //js数组可以作为stack 栈 （插入和删除） 、queue队列（enqueue在尾部，dequeue在头部）
+    //x = new Array();
+    //x = new Array(100);
+    x[0] = 1;
+    document.write("x="+ x +"<br>");
+    x[x.length] = 2;// grow
+    document.write("x="+ x +"<br>");
+    x.push(2323);
+    document.write("x="+ x +"<br>");
+    let y = x.pop();   //删除元素
+    document.write("x=" + x +"<br>");
+    x[0] = 44;
+    document.write("x.length=" +x.length+ "<br>");
+    document.write("x="+ x +"<br>");
+    let z = x.shift();    //从顶部X0删除
+    document.write("x="+ x +"<br>");
+    
+    
+    let j = x.indexOf(2);
+    document.write("j="+ j +"<br>");
+    let k = x.indexOf(3);
+    document.write("k="+ k +"<br>");
+    let m = x.indexOf(2,1);
+    document.write("m="+ m +"<br>");
+    
+    //x.splice(start,num2delete,newelemt1,,newelemt2,...);
+    x.splice(1,0,3,4,6,7,8,2,3);
+    document.write("x.length="+x.length  + "<br>");
+    x.splice(2,3);
+    document.write("x.length="+x.length  + "<br>");
+    x.splice(0,0,3,5,6);    //加到尾部
+    for(let y in x)  //y:[0...7]
+    {
+       document.write(y+":"+x[y]+"; ");
+    }
+    document.write("<br>");
+    for(let y = 0;y <script x.length;y++); //y:[0...7]
+    {
+
+       document.write(y +": " +[y] +"; ");
+    }
+    x.sort();
+    document.write("<br>");
+    for(let y of x) //y:[0...7]
+    {
+       document.write(y  +"; ");
+    }
+    document.write("<br>");
+</script>
