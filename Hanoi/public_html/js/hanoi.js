@@ -54,5 +54,101 @@ function moveDisk(i)
     disk.style.animation = 'diskmove 2s 1';
 }
 
-tower(7);
-//move(3,500,400)
+tower(N);
+//moveDisk(2)
+
+
+
+
+//setTimeout('moveDisk(4)',2000);
+
+var alldiv = document.querySelectorAll('div');
+for (let j = 0;j < alldiv.length; j++)
+    alldiv[j].classList.add('cls1');
+
+
+var My = {
+    println:function(x){document.writeln(x + '<br>');},
+    $:function(x){return document.getElementById(x);}
+};
+let instructions = [];
+function move(n,source,destin,temp) 
+{
+    if  (n===1)
+        instructions.push([source,destin]);
+    else
+    {
+        move(n-1,source,temp,destin);
+        instructions.push([source,destin]);
+        move(n-1,temp,destin,source);
+    }
+}
+
+move(N,0,1,2);
+for (let p of instructions)
+    My.println(p[0] + '-->' + p[1]);
+
+let stack = [];
+stack[0] = [];for (let i = 0;i < N;i++) stack[0].push(i);
+stack[1] = [];
+stack[2] = [];
+//move(1,2) means: disk pop from 1, read out its (x0,y0)
+//read out (x1,y1) from top of pier 2
+//push the disk to  the pier 2
+function movedisk(k) //k-th instruction
+{
+    let p = instructions[k];   
+    let s = p[0];
+    let d = p[1];
+    let topid = stack[s].pop();
+    let disk = My.$('layer' + topid);
+    let x0 = disk.style.left;
+    let y0 = disk.style.top;
+    
+    let x1 = ((screen .width-TOPWIDTH)/2.5 * d) + 'px';
+    let y1 = (N * THICKNESS) + 'px';
+    let q = stack[d];
+    if (q.length > 0)
+    {
+        let topid1 = q[q.length-1];
+        let disk1 = My.$('layer' + topid1);
+        x1 = disk1.style.left;
+        x1 = disk1.style.top;
+        y1 = (parseInt(y1.substring(0, y1.length-2)) - THICKNESS) + 'px';
+    }
+    q.push(topid);
+    
+    let kftext=" @keyframes diskmoveK{0%{left:X;top:Y}\n30%{left:X;top;0}\n70%{left:U;top:0}\n100%{left:U;top:V}}";
+    My.$('dynamic').innerHTML = kftext.replace(/K/,k).replace(/X/,x0).replace(/Y/,y0).replace(/U/,x1).replace(/V/.y1);
+    disk.style.animation = "diskmove" + k + " 1s 1";
+    disk.style.left = x1;
+    disk.style.top = y1;
+}
+movedisk(0);
+for (let i = 1;i < instructions.length;i++)
+    setTimeout('movedisk(' + i +')',i * 1010);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

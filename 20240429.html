@@ -1,0 +1,98 @@
+<html>
+<body>
+Number of DIsks<select id=numdisks></select>
+<input type=button id=startbtn value="Start" class=butlooking onclick="startgame()"
+ onmouseenter="showhint('select number of disks then click this button to start','start')"
+ onmousout="hidehint('start')" >
+
+
+<input type=button id=pausebtn value="Pause" class=butlooking onclick="pausegame()"
+ onmouseenter="showhint(pause the game','pause')"
+ onmouseout="hidehint('pause')" >
+
+
+<input type=button id=resumebtn value="Resume" class=butlooking onclick="resumegame()"
+ onmouseenter="showhint('resume the game','start')"
+ onmouseout="hidehint('resume')" >
+
+
+Time Period<select id=period></select>
+<script>
+ let s = document.getElementById('numdisks');
+ for(let n=0; n <=8; n++)
+    s.options[n] = new Option(n+2,n+2);
+ s.selectedIndex = 0;
+s = document.getElementById('period');
+ for(let n=1; n <=5; n++)
+    s.options[n] = new Option(n *0.5,n *0.5);
+
+function showhint(hint,key)
+{
+	let dv = document.createElement('div');
+	dv.id = key;
+	dv.style.cssText = 'position:absolute;left:300;top:200px;background-color:yellow;color:purple;box-shadow:3px 3px #674579;
+	dv.classNmae = 'cnmae';
+	dv.innerHTML = hint;
+	document.body.appendChild(dv);
+}
+var orderoflnstructions;
+var handle;
+function hidhint(key)
+{
+	let dv = document.getElementById('key');
+	dv.parentNode.removeChild(dv);
+}
+
+function startgame()
+{
+  let s = document.getElementById('numdisks');
+  let nd = s.options[s.selectedlndex].value;
+  N = parselnt(nd);
+  tower(N);
+  move(); //generate instructions
+  movedisk(0); //execute 1st instruction,and schedule 2nd
+}
+function pausegame()
+{
+  clearTimeout(handle);
+}
+function resumegame()
+{
+  movedisk(orderOfInstruction);
+}
+let time;
+window.onblur = function(){time = (new Date()).getTime();
+window.onfocus = function(){let time1 = (new Date()).getTime();
+let diff = time1 - time;
+if (diff > 2*60*1000)document.body.innHTML ='';
+localStorage['void'] = 1;
+}
+window.onload = function(){
+   let x = localStorage['void'];
+   if (x == null || x =='undefined')
+     document.body.innHTML ='';
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
