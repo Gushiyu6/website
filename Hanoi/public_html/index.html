@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>汉诺塔游戏</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
@@ -15,11 +15,168 @@
             {
                 0%{left:100px;top:200px}
                 100%{left:400px;top:500px}
+                from { transform: translateX(0); }  
+                to { transform: translateX(/* 移动到目标柱子的距离 */); } 
             }
+        </style>
+        <style>
+            .wrap {
+                
+                position: relative;
+                width: 1000px;
+                height: 600px;
+                margin: 5px auto;
+                border-bottom: 5px solid black;
+                }
+
+            .col-1,
+            .col-2,
+            .col-3 {
+                
+                    position: absolute;
+                    height: 100%;
+                    width: 30px;
+                    border-top-left-radius: 9px;
+                    border-top-right-radius: 9px;
+                    background-color: #855E42;
+            }
+
+            .col-1 {
+                    left: 0%;
+                    transform: translateX(-50%);
+            }
+
+            .col-2 {
+                    left: 30%;
+                    transform: translateX(-50%);
+            }
+
+            .col-3 {
+                    left: 78%;
+                    transform: translateX(-50%);
+            }
+/*            .col1:nth-child(1){left: 100px;}
+            .col2:nth-child(2){left: 408px;}
+            .col3:nth-child(3){left: 686px;}*/
+/*            .peg{
+                position: relative;
+                width:30px;
+                height: 400px;
+                
+                background-color:paleturquoise;
+                border-right: 10px;
+                display: inline-block;  让柱子并排显示 
+            }
+            .peg:nth-child(1){left: 100px;}
+            .peg:nth-child(2){left: 408px;}
+            .peg:nth-child(3){left: 686px;}*/
+/*            .disk {  
+                position: relative;
+                width: 60px;  盘子宽度小于柱子宽度   
+                height:20px;  盘子高度，可以根据需要调整   
+                background-color: red;  盘子颜色   
+                border-radius: 9px;
+                
+                bottom: 0;  让盘子贴在柱子底部   */
+
+              
+            
+            
         </style>
     </head>
     <body>
-                <script src ="js/hanoi.js"></script>
+<!--        <div class="peg" id="peg-1"></div> 
+        <div class="peg" id="peg-2"></div>   
+        <div class="peg" id="peg-3"></div>
+        -->
+        
+        <div class="wrap">
+        <div class="col" id="col-1"></div> 
+        <div class="col" id="col-2"></div>   
+        <div class="col" id="col-3"></div>
+        </div>  <br><br><br>
+
+        Number of Disks to play<select id=numdisks></select>   
+        <input type=button id=startbtn value="Start" class=butlooking onclick="startgame()" 
+        onmouseout="showhint('select number of disks then click this button to start','start')"
+        onmouseout="hidehint('start')">     
+
+        <input type=button id=pausebtn value="Pause" class=butlooking onclick="pausegame()"
+        onmouseenter="showhint('pause the game','pause')"
+        onmouseout="hidehint('pause')">
+
+        <input type=button id=resumebtn value="Resume" class=butlooking onclick="resumegame()"
+        onmouseenter="showhint('resume the game','resume')"
+        onmouseout="hidehint('resume')">
+
+        Time Period<select id=period></select><br>
+
+        
+        
+        <script src ="js/hanoi.js"></script>
                 <script src ="js/Drag.js"></script>
+               
+
+                              
     </body>
+    <script> 
+      
+
+//添加下拉菜单
+        let s=document.getElementById('numdisks');
+        for(let n=0;n<=8;n++){
+                   s.options[n]=new Option(n+2,n+2);}
+        s=document.getElementById('period');
+        for(let n=1;n<=5;n++){
+                    s.options[n]=new Option(n*0.5,n*0.5);}
+
+//显示和隐藏提示框
+       function showhint(hint,key)
+        {
+                    let dv=document.createElement('div');
+                    dv.id=key;
+                    dv.style.cssText='position:absolute;left:300;top:200px;background-color:yellow;color:purple;box-shadow:3px 3px #67111';
+                    dv.className='cnmae';
+                    dv.innerHTML=hint;
+                    document.body.appendChild(dv);
+        }
+        function hidehint(key)
+        {
+                    let dv=document.getElementById(key);
+                    dv.parentNode.removeChild(dv);
+        }
+        
+//控制游戏    
+//        var orderOfInstructions=0;
+//        var handle;
+//        function startgame()
+//        {
+//                    let s=document.getElementById('numdisks');
+//                    let nd=s.options[s.selectedIndex],value;
+//                    N=parseInt(nd);
+//                    tower(N);
+//                    move();
+//                    movedisks(0);
+//        }
+//        function pausegame()
+//        {
+//                    clearTimeout(handle);
+//        }
+//        function resumegame()
+//        {
+//                    movedisk(orderOfInstruction);
+//        }
+//        let time;
+//        window.onblur = function(){time = (new Date()).getTime();
+//        window.onfocus = function()
+//        {let time1 = (new Date()).getTime();
+//        let diff = time1 - time;
+//        if (diff > 2*60*1000)document.body.innerHTML =' ';
+//        localStorage['void'] = 1;
+//        }
+//        window.onload = function(){
+//        let x = localStorage['void'];
+//        if (x != null || x !='undefined' || x == 1)
+//        document.body.innerHTML =' ';
+    </script>
 </html>

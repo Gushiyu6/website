@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html>
+
+    <body>
+        Number of Disks to play<select id=numdisks></select>   
+        <input type=button id=starbtn value="Start" class=butlooking onclick="startgame()" 
+        onmouseout="showhint('select number of disks then click this button to start','start')"
+        onmouseout="hidehint('start')">     
+
+        <input type=button id=pausebtn value="Pause" class=butlooking onclick="pausegame()"
+        onmouseenter="showhint('pause the game','pause')"
+        onmouseout="hidehint('pause')">
+
+        <input type=button id=resumebtn value="Resume" class=butlooking onclick="resumegame()"
+        onmouseenter="showhint('resume the game','resume')"
+        onmouseout="hidehint('resume')">
+
+        Time Period<select id=period></select>
+    </body>
+
+    <script> 
+//添加下拉菜单
+        let s=document.getElementById('numdisks');
+        for(let n=0;n<=8;n++)
+                   s.options[n]=new Option(n+2,n+2);
+        s=document.getElementById('period');
+        for(let n=1;n<=5;n++)
+                    s.options[n]=new Option(n*0.5,n*0.5);
+
+//显示和隐藏提示框
+       function showhint(hint,key)
+        {
+                    let dv=document.createElement('div');
+                    dv.id=key;
+                    dv.style.cssText='position:absolute;left:300;top:200px;background-color:yellow;color:purple;box-shadow:3px 3px #67111';
+                    dv.className='cnmae';
+                    dv.innerHTML=hint;
+                    document.body.appendChild(dv);
+        }
+        function hidehint(key)
+        {
+                    let dv=document.getElementById(key);
+                    dv.parentNode.removeChild(dv);
+        }
+    
+
+//控制游戏    
+       
+    </script>
+</html>
